@@ -153,47 +153,29 @@ int add_edges_to_nodes (int n, int mleft, int wmin, int wmax, int **weight_matri
 	return 0;
 }
 
-/* #define M 10 */
-/* #define N 10 */
-
+// https://openpatent.blogspot.dk/2013/04/xincrol-unique-and-random-number.html
+// Use this approach: https://stackoverflow.com/questions/1608181/unique-random-numbers-in-an-integer-array-in-the-c-programming-language/1608585#1608585
+// https://stackoverflow.com/questions/196017/unique-non-repeating-random-numbers-in-o1
 int main (int argc, char *argv[])
 {
-
-	/* unsigned char is_used[N] = { 0 }; /\* flags *\/ */
-	/* int in, im; */
-
-	/* im = 0; */
-	/* int vektor[M]; */
-
-	/* for (in = N - M; in < N && im < M; ++in) { */
-	/* 	int r = randombytes_uniform(RAND_MAX) % (in + 1); /\* generate a random number 'r' *\/ */
-	/* 	if (is_used[r]) */
-	/* 		/\* we already have 'r' *\/ */
-	/* 		r = in; /\* use 'in' instead of the generated number *\/ */
-	/* 	assert(!is_used[r]); */
-	/* 	vektor[im++] = r + 1; /\* +1 since your range begins from 1 *\/ */
-	/* 	is_used[r] = 1; */
-	/* } */
-	/* assert(im == M); */
-	/* for (int i = 0; i < M; i++) */
-	/* 	printf ("%d\n", vektor[i]); */
-	/* exit (0); */
-
-	/* int *harray = malloc (n * sizeof(int)); */
+	// TODO: Implement these
+	/* int *harray[n]; */
 	/* int counter = 0; */
-	/* for (int j = 0; j < n j++) */
-	/* 	harray[j] = weight_matrix[i][j]; */
 	/* for (int j = 0; j < n; j++) { */
-	/* 	harray[j] = weight_matrix[i][j]; */
-	/* 	if (harray[j] != -1 || i==j) // already connected */
+	/* 	if (weight_matrix[i][j] != -1 || i==j) // already connected */
 	/* 		continue; */
+	/* 	harray[counter] = malloc (sizeof(int)); */
+	/* 	harray[counter] = &(weight_matrix[i][j]); */
 	/* 	counter++; */
-	/* 	harray[j] = &(weight_matrix[i][j]); */
 	/* } */
 	/* int idx = randombytes_uniform(counter); */
 	/* idx = *harray[idx]; */
 	/* weight_matrix[i][idx] = weight; */
 	/* weight_matrix[idx][i] = weight; */
+	/* int tmp = harray[counter-1]; */
+	/* harray[counter-1] = harray[idx]; */
+	/* harray[idx] = tmp; */
+	/* counter--; */
 
 	if (argc != MIN_ARGS) {
 		printf ("Obey the required number of arguments!!\n");
@@ -217,8 +199,9 @@ int main (int argc, char *argv[])
 		weight_matrix[i] = malloc (n * sizeof(int));
 		num_connections[i] = (n-1);
 	}
-
+	printf ("1\n");
 	produce_spanning_tree (n, wmin, wmax, weight_matrix, num_connections);
+	printf ("2\n");
 	// D = m / ((n)(n-1))
 	// m = (D*n*(n-1)) (undirected - m / 2)
 	int m = (density*n*(n-1)) / 2;
@@ -229,10 +212,12 @@ int main (int argc, char *argv[])
 	double avg_edges = (double)mleft/(double)n;
 	printf ("after spanning tree\n");
 	pp_matrix (n, weight_matrix);
-	printf ("her: %d %.2f %d %d %d %.2f\n", n, density, wmin, wmax, mleft, avg_edges);
+	printf ("parameters: n=%d d=%.2f wmin=%d wmax=%d mleft=%d avg_edge_pr_node=%.2f\n", n, density, wmin, wmax, mleft, avg_edges);
 	#endif
 
+	printf ("3\n");
 	add_edges_to_nodes (n, mleft, wmin, wmax, weight_matrix, num_connections);
+	printf ("4\n");
 
 	#ifdef DEBUG
 	printf ("After adding edges\n");
@@ -243,17 +228,3 @@ int main (int argc, char *argv[])
 
 	return EXIT_SUCCESS;
 }
-
-// https://openpatent.blogspot.dk/2013/04/xincrol-unique-and-random-number.html
-// Use this approach: https://stackoverflow.com/questions/1608181/unique-random-numbers-in-an-integer-array-in-the-c-programming-language/1608585#1608585
-// https://stackoverflow.com/questions/196017/unique-non-repeating-random-numbers-in-o1
-/* int a[n], j, tmp; */
-/* for (int i = (n-1); i > 0; i--) { */
-/* 	j = randombytes_uniform(i); */
-/* 	tmp = a[j]; */
-/* 	a[j] = a[i]; */
-/* 	a[i] = tmp; */
-/* } */
-/* for (int i = 0; i < n; i++) */
-/* 	printf ("%d\n", a[i]); */
-/* exit (0); */
