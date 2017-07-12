@@ -6,10 +6,10 @@ LDFLAGS=-lsodium
 
 all : dimacs
 
-rebuild : clean dimacs
+rebuild : clean all
 
-dimacs : dimacs.c dimacs.h
+dimacs : dimacs.c dimacs.h 
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
 clean :
-	rm -rf dimacs
+	rm -rf *.o dimacs

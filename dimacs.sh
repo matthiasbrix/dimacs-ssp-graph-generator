@@ -45,3 +45,8 @@ name=$i-$FILENAME.txt
 make rebuild
 # run prog
 ./dimacs $n $d $WMIN $WMAX $name
+DIRECTORY=graphs
+if [ ! -d "$DIRECTORY" ]; then
+  mkdir $DIRECTORY
+fi
+mv $name $DIRECTORY

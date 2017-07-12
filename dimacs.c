@@ -1,3 +1,4 @@
+
 #include "dimacs.h"
 
 #define MIN_ARGS 6
@@ -37,7 +38,8 @@ void write_to_file (const char *fname, int **weight_matrix, int n, int m)
 	}
 }
 
-// TODO: Check numbers between (inlucsive and so on)
+// Generates number i such that min_num <= i <= max_num
+// i.e. min and max are inclusive
 int random_number(int min_num, int max_num)
 {
 	int result = 0, low_num = 0, hi_num = 0;
@@ -145,14 +147,54 @@ int add_edges_to_nodes (int n, int mleft, int wmin, int wmax, int **weight_matri
 		int weight = random_number(wmin, wmax);
 		weight_matrix[u][v] = weight;
 		weight_matrix[v][u] = weight;
-		num_connections[u] += 1;
-		num_connections[v] += 1;
+		num_connections[u] -= 1;
+		num_connections[v] -= 1;
 	}
 	return 0;
 }
 
+/* #define M 10 */
+/* #define N 10 */
+
 int main (int argc, char *argv[])
 {
+
+	/* unsigned char is_used[N] = { 0 }; /\* flags *\/ */
+	/* int in, im; */
+
+	/* im = 0; */
+	/* int vektor[M]; */
+
+	/* for (in = N - M; in < N && im < M; ++in) { */
+	/* 	int r = randombytes_uniform(RAND_MAX) % (in + 1); /\* generate a random number 'r' *\/ */
+	/* 	if (is_used[r]) */
+	/* 		/\* we already have 'r' *\/ */
+	/* 		r = in; /\* use 'in' instead of the generated number *\/ */
+	/* 	assert(!is_used[r]); */
+	/* 	vektor[im++] = r + 1; /\* +1 since your range begins from 1 *\/ */
+	/* 	is_used[r] = 1; */
+	/* } */
+	/* assert(im == M); */
+	/* for (int i = 0; i < M; i++) */
+	/* 	printf ("%d\n", vektor[i]); */
+	/* exit (0); */
+
+	/* int *harray = malloc (n * sizeof(int)); */
+	/* int counter = 0; */
+	/* for (int j = 0; j < n j++) */
+	/* 	harray[j] = weight_matrix[i][j]; */
+	/* for (int j = 0; j < n; j++) { */
+	/* 	harray[j] = weight_matrix[i][j]; */
+	/* 	if (harray[j] != -1 || i==j) // already connected */
+	/* 		continue; */
+	/* 	counter++; */
+	/* 	harray[j] = &(weight_matrix[i][j]); */
+	/* } */
+	/* int idx = randombytes_uniform(counter); */
+	/* idx = *harray[idx]; */
+	/* weight_matrix[i][idx] = weight; */
+	/* weight_matrix[idx][i] = weight; */
+
 	if (argc != MIN_ARGS) {
 		printf ("Obey the required number of arguments!!\n");
 	}
@@ -201,3 +243,17 @@ int main (int argc, char *argv[])
 
 	return EXIT_SUCCESS;
 }
+
+// https://openpatent.blogspot.dk/2013/04/xincrol-unique-and-random-number.html
+// Use this approach: https://stackoverflow.com/questions/1608181/unique-random-numbers-in-an-integer-array-in-the-c-programming-language/1608585#1608585
+// https://stackoverflow.com/questions/196017/unique-non-repeating-random-numbers-in-o1
+/* int a[n], j, tmp; */
+/* for (int i = (n-1); i > 0; i--) { */
+/* 	j = randombytes_uniform(i); */
+/* 	tmp = a[j]; */
+/* 	a[j] = a[i]; */
+/* 	a[i] = tmp; */
+/* } */
+/* for (int i = 0; i < n; i++) */
+/* 	printf ("%d\n", a[i]); */
+/* exit (0); */
