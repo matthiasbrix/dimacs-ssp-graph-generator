@@ -59,7 +59,8 @@ int random_number(int min_num, int max_num)
 
 int produce_spanning_tree (int n, int wmax, int wmin, int **weight_matrix, int *num_connections)
 {
-	int connected[n], v, u;
+	int *connected = malloc (n * sizeof (int));
+	int v, u;
 
 	for (int i = 0; i < n; i++) {
 		connected[i] = -1;
@@ -199,9 +200,9 @@ int main (int argc, char *argv[])
 		weight_matrix[i] = malloc (n * sizeof(int));
 		num_connections[i] = (n-1);
 	}
-	printf ("1\n");
+
 	produce_spanning_tree (n, wmin, wmax, weight_matrix, num_connections);
-	printf ("2\n");
+
 	// D = m / ((n)(n-1))
 	// m = (D*n*(n-1)) (undirected - m / 2)
 	int m = (density*n*(n-1)) / 2;
@@ -215,9 +216,7 @@ int main (int argc, char *argv[])
 	printf ("parameters: n=%d d=%.2f wmin=%d wmax=%d mleft=%d avg_edge_pr_node=%.2f\n", n, density, wmin, wmax, mleft, avg_edges);
 	#endif
 
-	printf ("3\n");
 	add_edges_to_nodes (n, mleft, wmin, wmax, weight_matrix, num_connections);
-	printf ("4\n");
 
 	#ifdef DEBUG
 	printf ("After adding edges\n");
