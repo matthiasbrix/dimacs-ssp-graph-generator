@@ -6,7 +6,7 @@ Generating graphs in the DIMACS SSP file format.
 
 ## How to use
 
-./dimacs.sh -n 100 -d 0.7 -w 100 1000
+./dimacs.sh -n 100 -d 0.7 -w 100 1000 <br />
 n=number of vertices <br />
 d=density of graph <br />
 w=minimum weight maximum weight <br />
@@ -22,7 +22,3 @@ git clone https://github.com/matthiasbrix/dimacs-ssp-graph-generator.git
 ## Contributors
 
 Rune Petersen, Einar Rasmussen, Matthias Brix
-
-## License
-
-A short snippet describing the license (MIT, Apache, etc.)

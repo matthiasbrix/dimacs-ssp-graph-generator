@@ -35,13 +35,14 @@ tmp=`expr $n - 1`
 tmp2=`expr $n \* $tmp`
 m=$(echo "scale=2; $tmp2 * $d" | bc)
 m=$(echo "$m/1" | bc)
-FILENAME="n=$n"-"m=$m"-"d=$d"
+
+FILENAME="n=$n-m=$m-d=$d".txt
 # Find out which num. of occurence it is
 i=0
-while [[ -e $i-$FILENAME.txt ]]; do
+while [[ -e graphs/"$i-$FILENAME" ]]; do
     let i++
 done
-name=$i-$FILENAME.txt
+name="$i-$FILENAME"
 make rebuild
 # run prog
 ./dimacs $n $d $WMIN $WMAX $name
