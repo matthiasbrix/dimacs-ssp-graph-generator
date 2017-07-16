@@ -255,7 +255,6 @@ int main (int argc, char *argv[])
 		num_connections[i] = (n-1);
 	}
 
-	printf ("1\n");
 	produce_spanning_tree (n, wmin, wmax, num_connections, weight_matrix);
 
 	// D = m / ((n)(n-1))
@@ -271,7 +270,6 @@ int main (int argc, char *argv[])
 			n, density, wmin, wmax, mleft, ((double)mleft/(double)n));
 	#endif
 
-	printf ("2\n");
 	add_edges_to_nodes (n, mleft, wmin, wmax, weight_matrix, num_connections);
 
 	#ifdef DEBUG
@@ -279,7 +277,6 @@ int main (int argc, char *argv[])
 	pp_matrix (n, weight_matrix);
 	#endif
 
-	printf ("3\n");
 	write_to_file (fname, weight_matrix, n, m);
 
 	return EXIT_SUCCESS;
