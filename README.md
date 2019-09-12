@@ -20,6 +20,7 @@ git clone https://github.com/matthiasbrix/dimacs-ssp-graph-generator.git
 ## TODO
 
 * Try Wilson's algorithm for producing the MST
+* Add a CUDA implementation.
 
 ## Contributors
 
