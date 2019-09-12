@@ -3,14 +3,7 @@
 /*
   Authors (and copyrigt):
   Matthias Brix
-  Einar Rasmussen
-  Rune Petersen
 */
-
-/*
-  TODO:
-  1. Wilson's alg.: https://stackoverflow.com/questions/2041517/random-simple-connected-graph-generation-with-given-sparseness
- */
 
 void pp_matrix (int n, struct entry **matrix)
 {
