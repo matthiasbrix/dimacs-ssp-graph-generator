@@ -59,8 +59,8 @@ int random_number(int min_num, int max_num)
 }
 
 struct available_entries *find_available_entries (enum mode mode, int n, int u,
-												  struct entry **weight_matrix, int *connected,
-												  int *num_connections,int num_edges_for_each_node)
+	struct entry **weight_matrix, int *connected,
+	int *num_connections,int num_edges_for_each_node)
 {
 	struct available_entries *st = malloc (sizeof (struct available_entries));
 	struct entry **harray = malloc (n * sizeof(struct entry*));
@@ -206,11 +206,8 @@ int add_edges_to_nodes (int n, int mleft, int wmin, int wmax,
 			u = randombytes_uniform (counter);
 			u = available[u];
 			struct available_entries *st =
-				find_available_entries (rem_edges, n, u,
-										weight_matrix, NULL,
-										num_connections,
-										num_edges_for_each_node);
-
+				find_available_entries (rem_edges, n, u, weight_matrix, NULL,
+							num_connections, num_edges_for_each_node);
 			v = randombytes_uniform (st->counter);
 			weight = random_number (wmin, wmax);
 			st->harray[v]->weight = weight;
