@@ -17,6 +17,10 @@ where `n` is the number of vertices, `d` the density of the constructed graph an
 git clone https://github.com/matthiasbrix/dimacs-ssp-graph-generator.git
 ```
 
+## TODO
+
+* Try Wilson's algorithm for producing the MST
+
 ## Contributors
 
 Matthias Brix
